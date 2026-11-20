@@ -223,6 +223,7 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--mu
       <a href="#spectacle" data-nav="spectacle">Le spectacle</a>
       <a href="#troupe" data-nav="troupe">La troupe</a>
       <a href="#galerie" data-nav="galerie">Galerie</a>
+      <a href="#passes" data-nav="passes">Spectacles passés</a>
       <a href="#reserver" data-nav="reserver">Contact</a>
     </nav>
   </div>
@@ -341,6 +342,54 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--mu
   </section>
 </div>
 
+<!-- ========== PAGE SPECTACLES PASSÉS ========== -->
+<div id="past" hidden>
+  <section class="hero compact">
+    <div class="wrap">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Spectacles passés · Tournée 2025–2026</p>
+          <h1>Contact</h1>
+          <p class="lead">Retour sur la tournée 2025–2026 de Namass Pamouss.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Le spectacle</p>
+      <h2>De quoi parle « Contact »</h2>
+      <div class="soon">
+        <h3>Présentation à venir</h3>
+        <p>Le texte de présentation du spectacle sera ajouté ici.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <p class="eyebrow">Les représentations</p>
+      <h2>Où nous avons joué</h2>
+      <div class="soon">
+        <h3>Dates et lieux à venir</h3>
+        <p>La liste des représentations de la tournée 2025–2026 sera ajoutée ici.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Photos</p>
+      <h2>La tournée en images</h2>
+      <div class="soon">
+        <h3>Photos à venir</h3>
+        <p>Les photos de la tournée seront ajoutées ici.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
 <dialog class="fiche" id="fiche" aria-labelledby="fiche-name">
   <div class="fiche-grid">
     <div class="fiche-body">
@@ -378,6 +427,7 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--mu
 
   var home = document.getElementById("home");
   var team = document.getElementById("team");
+  var past = document.getElementById("past");
   var list = document.getElementById("members");
   var dlg = document.getElementById("fiche");
   var current = 0;
@@ -455,13 +505,15 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--mu
   function route() {
     var h = (location.hash || "").replace("#", "");
     var onTeam = h === "troupe";
+    var onPast = h === "passes";
     team.hidden = !onTeam;
-    home.hidden = onTeam;
+    past.hidden = !onPast;
+    home.hidden = onTeam || onPast;
     links.forEach(function (a) {
       if (a.getAttribute("data-nav") === h) a.setAttribute("aria-current", "page");
       else a.removeAttribute("aria-current");
     });
-    if (onTeam) { window.scrollTo(0, 0); return; }
+    if (onTeam || onPast) { window.scrollTo(0, 0); return; }
     var el = h ? document.getElementById(h) : null;
     if (el) el.scrollIntoView(); else window.scrollTo(0, 0);
   }
