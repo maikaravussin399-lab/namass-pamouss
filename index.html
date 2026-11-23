@@ -201,6 +201,23 @@ dialog.fiche::backdrop { background: rgba(12, 9, 34, 0.65); }
 
 footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--muted); font-size: 0.9rem; }
 
+/* Photos de la tournée */
+.photos { list-style: none; margin: 0; padding: 0; column-count: 3; column-gap: 12px; }
+.photos li { break-inside: avoid; margin: 0 0 12px; }
+.ph-btn { display: block; width: 100%; padding: 0; border: 0; background: var(--surface); cursor: zoom-in; border-radius: 3px; overflow: hidden; }
+.ph-btn img { display: block; width: 100%; height: auto; }
+@media (prefers-reduced-motion: no-preference) { .ph-btn img { transition: transform 0.35s ease; } .ph-btn:hover img { transform: scale(1.03); } }
+dialog.lightbox { padding: 0; border: 0; background: var(--stage); color: var(--stage-fg); width: min(1100px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow: hidden; }
+dialog.lightbox::backdrop { background: rgba(12, 9, 34, 0.8); }
+.lb-stage { display: grid; place-items: center; padding: 12px 12px 0; }
+.lb-stage img { max-width: 100%; max-height: calc(100dvh - 130px); width: auto; height: auto; object-fit: contain; display: block; }
+.lb-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 12px; }
+.lb-bar .count { color: rgba(251, 243, 232, 0.75); font-size: 0.9rem; }
+.lb-bar .btn-line { background: transparent; color: var(--stage-fg); border-color: rgba(251, 243, 232, 0.4); }
+.lb-bar .grp { display: flex; flex-wrap: wrap; gap: 10px; }
+@media (max-width: 820px) { .photos { column-count: 2; } }
+@media (max-width: 460px) { .photos { column-count: 1; } }
+
 @media (max-width: 820px) {
   .hero-inner, .play, .book { grid-template-columns: minmax(0, 1fr); }
 }
@@ -360,9 +377,16 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--mu
     <div class="wrap">
       <p class="eyebrow">Le spectacle</p>
       <h2>De quoi parle « Contact »</h2>
-      <div class="soon">
-        <h3>Présentation à venir</h3>
-        <p>Le texte de présentation du spectacle sera ajouté ici.</p>
+      <div class="play">
+        <div>
+          <p class="synopsis">Création 2025 de la Compagnie Namass Pamouss. Alexia vit seule, entourée d’écrans, et un Narrateur guide le public dans son quotidien hyperconnecté, là où l’on parle, on écrit, on partage, mais où l’on ne se touche plus.</p>
+          <p class="synopsis">Entre dialogues, projections, danse et chansons, une pièce qui ne donne pas de réponses mais invite à ressentir, jusqu’à une chute que personne n’attend.</p>
+        </div>
+        <dl class="facts">
+          <div><dt>Texte</dt><dd>François Intriere, avec deux membres de la compagnie</dd></div>
+          <div><dt>Distribution</dt><dd>3 comédiens pour 10 rôles</dd></div>
+          <div><dt>Musique</dt><dd>Un musicien en direct, compositions originales</dd></div>
+        </dl>
       </div>
     </div>
   </section>
@@ -382,13 +406,38 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--mu
     <div class="wrap">
       <p class="eyebrow">Photos</p>
       <h2>La tournée en images</h2>
-      <div class="soon">
-        <h3>Photos à venir</h3>
-        <p>Les photos de la tournée seront ajoutées ici.</p>
-      </div>
+      <ul class="photos" id="photos">
+        <li><button type="button" class="ph-btn" data-i="0" aria-label="Agrandir la photo 1"><img src="img/contact-01.jpg" alt="Trois personnes souriantes derrière un comptoir en bois, avec des gâteaux" width="1080" height="713" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="1" aria-label="Agrandir la photo 2"><img src="img/contact-02.jpg" alt="Un comédien à casquette sous une lumière verte, une personne avec un casque de réalité virtuelle derrière lui" width="1400" height="933" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="2" aria-label="Agrandir la photo 3"><img src="img/contact-03.jpg" alt="Un comédien à casquette et une comédienne en combinaison rose devant leurs ordinateurs" width="1080" height="699" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="3" aria-label="Agrandir la photo 4"><img src="img/contact-04.jpg" alt="Scène sous lumière verte avec trois personnes portant des casques de réalité virtuelle" width="1400" height="933" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="4" aria-label="Agrandir la photo 5"><img src="img/contact-05.jpg" alt="Selfie de quatre personnes autour d&#x27;une table pendant une pause" width="1400" height="788" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="5" aria-label="Agrandir la photo 6"><img src="img/contact-06.jpg" alt="Une comédienne avec des antennes et une robe à pois, une autre personne endormie en combinaison rose" width="1001" height="1400" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="6" aria-label="Agrandir la photo 7"><img src="img/contact-07.jpg" alt="Un comédien à casquette et bretelles, la main derrière la tête, sur scène" width="1080" height="695" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="7" aria-label="Agrandir la photo 8"><img src="img/contact-08.jpg" alt="Une comédienne en combinaison rose surprise, à côté d&#x27;une comédienne en robe à pois et lunettes rouges" width="1080" height="916" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="8" aria-label="Agrandir la photo 9"><img src="img/contact-09.jpg" alt="Quatre personnes derrière un comptoir présentant des douceurs" width="1400" height="933" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="9" aria-label="Agrandir la photo 10"><img src="img/contact-10.jpg" alt="Deux hommes en conversation, vus de profil" width="1400" height="933" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="10" aria-label="Agrandir la photo 11"><img src="img/contact-11.jpg" alt="Deux scènes : une comédienne en combinaison rose avec un bâton lumineux, un comédien à casquette" width="1079" height="1367" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="11" aria-label="Agrandir la photo 12"><img src="img/contact-12.jpg" alt="Scène sous lumière violette : une comédienne en rose et une comédienne en tenue de policière" width="1400" height="933" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="12" aria-label="Agrandir la photo 13"><img src="img/contact-13.jpg" alt="Une comédienne en robe à pois et lunettes rouges au téléphone, sous lumière verte" width="1080" height="723" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="13" aria-label="Agrandir la photo 14"><img src="img/contact-14.jpg" alt="Trois comédiens sur scène devant le public" width="1080" height="743" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="14" aria-label="Agrandir la photo 15"><img src="img/contact-15.jpg" alt="Une comédienne en combinaison rose qui joue de la guitare avec un balai" width="970" height="1400" loading="lazy"></button></li>
+      </ul>
     </div>
   </section>
 </div>
+
+<dialog class="lightbox" id="lightbox" aria-label="Photo de la tournée">
+  <div class="lb-stage"><img id="lb-img" alt=""></div>
+  <div class="lb-bar">
+    <span class="count" id="lb-count"></span>
+    <div class="grp">
+      <button class="btn btn-line" type="button" id="lb-prev">Précédente</button>
+      <button class="btn btn-line" type="button" id="lb-next">Suivante</button>
+      <button class="btn btn-gold" type="button" id="lb-close">Fermer</button>
+    </div>
+  </div>
+</dialog>
 
 <dialog class="fiche" id="fiche" aria-labelledby="fiche-name">
   <div class="fiche-grid">
@@ -499,6 +548,39 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--mu
   document.getElementById("fiche-prev").addEventListener("click", function () { fillFiche(current - 1); });
   document.getElementById("fiche-next").addEventListener("click", function () { fillFiche(current + 1); });
   dlg.addEventListener("click", function (e) { if (e.target === dlg) closeFiche(); });
+
+  /* Photos de la tournée : agrandissement */
+  var lb = document.getElementById("lightbox");
+  var lbImg = document.getElementById("lb-img");
+  var lbCount = document.getElementById("lb-count");
+  var shots = Array.prototype.slice.call(document.querySelectorAll("#photos img"));
+  var lbIndex = 0;
+  function showShot(i) {
+    lbIndex = (i + shots.length) % shots.length;
+    lbImg.src = shots[lbIndex].getAttribute("src");
+    lbImg.alt = shots[lbIndex].alt;
+    lbCount.textContent = (lbIndex + 1) + " / " + shots.length;
+  }
+  function openShot(i) {
+    showShot(i);
+    if (typeof lb.showModal === "function") { if (!lb.open) lb.showModal(); }
+    else { lb.setAttribute("open", ""); }
+  }
+  function closeShot() {
+    if (typeof lb.close === "function") lb.close(); else lb.removeAttribute("open");
+  }
+  shots.forEach(function (img, i) {
+    img.parentNode.addEventListener("click", function () { openShot(i); });
+  });
+  document.getElementById("lb-prev").addEventListener("click", function () { showShot(lbIndex - 1); });
+  document.getElementById("lb-next").addEventListener("click", function () { showShot(lbIndex + 1); });
+  document.getElementById("lb-close").addEventListener("click", closeShot);
+  lb.addEventListener("click", function (e) { if (e.target === lb) closeShot(); });
+  document.addEventListener("keydown", function (e) {
+    if (!lb.open) return;
+    if (e.key === "ArrowLeft") showShot(lbIndex - 1);
+    if (e.key === "ArrowRight") showShot(lbIndex + 1);
+  });
 
   /* Navigation : la page "La troupe" est une vue à part, le reste défile sur l'accueil */
   var links = document.querySelectorAll("[data-nav]");
