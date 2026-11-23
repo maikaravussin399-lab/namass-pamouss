@@ -201,6 +201,16 @@ dialog.fiche::backdrop { background: rgba(12, 9, 34, 0.65); }
 
 footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--muted); font-size: 0.9rem; }
 
+/* Liste des représentations */
+.dates { list-style: none; margin: 0; padding: 0; max-width: 760px; }
+.dates li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px 20px; align-items: center; padding: 16px 0; border-top: 1px solid var(--line); }
+.dates li:last-child { border-bottom: 1px solid var(--line); }
+.date { font-family: var(--font-display); line-height: 1; }
+.date .day { font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em; }
+.date .mon { display: block; margin-top: 4px; font: 600 0.78rem var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.what strong { display: block; font-size: 1.1rem; }
+.what span { color: var(--muted); font-size: 0.95rem; }
+
 /* Photos de la tournée */
 .photos { list-style: none; margin: 0; padding: 0; column-count: 3; column-gap: 12px; }
 .photos li { break-inside: avoid; margin: 0 0 12px; }
@@ -299,7 +309,7 @@ dialog.lightbox::backdrop { background: rgba(12, 9, 34, 0.8); }
           <div><dt>Texte</dt><dd>François Intriere</dd></div>
           <div><dt>Distribution</dt><dd>4 comédiens</dd></div>
           <div><dt>Durée</dt><dd>1h, sans entracte</dd></div>
-          <div><dt>Public</dt><dd>Dès 8 ans</dd></div>
+          <div><dt>Public</dt><dd>Dès 12 ans</dd></div>
         </dl>
       </div>
     </div>
@@ -395,10 +405,40 @@ dialog.lightbox::backdrop { background: rgba(12, 9, 34, 0.8); }
     <div class="wrap">
       <p class="eyebrow">Les représentations</p>
       <h2>Où nous avons joué</h2>
-      <div class="soon">
-        <h3>Dates et lieux à venir</h3>
-        <p>La liste des représentations de la tournée 2025–2026 sera ajoutée ici.</p>
-      </div>
+      <ul class="dates">
+        <li>
+          <div class="date"><span class="day">1</span><span class="mon">nov. 2025</span></div>
+          <div class="what"><strong>Théâtre du Bout du Chemin</strong><span>Vucherens · samedi</span></div>
+        </li>
+        <li>
+          <div class="date"><span class="day">7</span><span class="mon">nov. 2025</span></div>
+          <div class="what"><strong>Théâtre du Bout du Chemin</strong><span>Vucherens · vendredi</span></div>
+        </li>
+        <li>
+          <div class="date"><span class="day">8</span><span class="mon">nov. 2025</span></div>
+          <div class="what"><strong>Théâtre du Bout du Chemin</strong><span>Vucherens · samedi</span></div>
+        </li>
+        <li>
+          <div class="date"><span class="day">14</span><span class="mon">nov. 2025</span></div>
+          <div class="what"><strong>Théâtre de la Corde</strong><span>Moudon · vendredi</span></div>
+        </li>
+        <li>
+          <div class="date"><span class="day">15</span><span class="mon">nov. 2025</span></div>
+          <div class="what"><strong>Théâtre de la Corde</strong><span>Moudon · samedi</span></div>
+        </li>
+        <li>
+          <div class="date"><span class="day">21</span><span class="mon">nov. 2025</span></div>
+          <div class="what"><strong>Théâtre du Tonneau</strong><span>Lutry · vendredi</span></div>
+        </li>
+        <li>
+          <div class="date"><span class="day">22</span><span class="mon">nov. 2025</span></div>
+          <div class="what"><strong>Théâtre du Tonneau</strong><span>Lutry · samedi</span></div>
+        </li>
+        <li>
+          <div class="date"><span class="day">28</span><span class="mon">nov. 2025</span></div>
+          <div class="what"><strong>Théâtre du Bout du Chemin</strong><span>Vucherens · vendredi · soirée VIP avec repas</span></div>
+        </li>
+      </ul>
     </div>
   </section>
 
