@@ -195,8 +195,13 @@ dialog.fiche::backdrop { background: rgba(12, 9, 34, 0.65); }
 .book { max-width: 640px; }
 .contact { border: 1px solid var(--line); background: var(--bg); padding: 24px; }
 .contact h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
-.contact .mail { display: block; margin: 16px 0 12px; font: 800 1.8rem var(--font-display); overflow-wrap: anywhere; user-select: all; }
-.contact .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.channels { margin: 18px 0 8px; }
+.channels > div { padding: 14px 0; border-top: 1px solid var(--line); }
+.channels dt { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.channels dd { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.chan { font: 800 1.35rem var(--font-display); color: var(--fg); text-decoration: none; overflow-wrap: anywhere; }
+.chan:hover { text-decoration: underline; }
+.btn-sm { min-height: 36px; padding: 0 14px; font-size: 0.85rem; }
 #copy-status { color: var(--muted); font-size: 0.9rem; }
 
 footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--muted); font-size: 0.9rem; }
@@ -336,13 +341,25 @@ dialog.lightbox::backdrop { background: rgba(12, 9, 34, 0.8); }
       <h2>Nous contacter</h2>
       <div class="book">
         <div class="contact">
-          <h3>Appelez-nous</h3>
-          <p>Une question, une envie de nous voir jouer ? Appelez-nous ou envoyez-nous un message. Les réservations ouvriront avec les premières dates.</p>
-          <span class="mail" id="mail">078 214 05 37</span>
-          <div class="row">
-            <button class="btn btn-accent" type="button" id="copy">Copier le numéro</button>
-            <span id="copy-status" role="status"></span>
-          </div>
+          <h3>Nous joindre</h3>
+          <p>Une question, une envie de nous voir jouer ? Appelez-nous ou écrivez-nous. Les réservations ouvriront avec les premières dates.</p>
+          <dl class="channels">
+            <div>
+              <dt>Téléphone</dt>
+              <dd>
+                <a class="chan" id="phone" href="tel:+41782140537">078 214 05 37</a>
+                <button class="btn btn-accent btn-sm" type="button" data-copy="phone">Copier</button>
+              </dd>
+            </div>
+            <div>
+              <dt>E-mail</dt>
+              <dd>
+                <a class="chan" id="email" href="mailto:reservation@namass-pamouss.ch">reservation@namass-pamouss.ch</a>
+                <button class="btn btn-accent btn-sm" type="button" data-copy="email">Copier</button>
+              </dd>
+            </div>
+          </dl>
+          <span id="copy-status" role="status"></span>
         </div>
       </div>
     </div>
@@ -642,26 +659,28 @@ dialog.lightbox::backdrop { background: rgba(12, 9, 34, 0.8); }
   window.addEventListener("hashchange", route);
   route();
 
-  /* Copier le numéro de téléphone */
-  var copyBtn = document.getElementById("copy");
-  var mail = document.getElementById("mail");
+  /* Copier le téléphone ou l'adresse e-mail */
   var status = document.getElementById("copy-status");
-  copyBtn.addEventListener("click", function () {
-    function fallback() {
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var el = document.getElementById(btn.getAttribute("data-copy"));
+      var isPhone = btn.getAttribute("data-copy") === "phone";
+      function fallback() {
+        try {
+          var r = document.createRange();
+          r.selectNodeContents(el);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(r);
+        } catch (e) {}
+        status.textContent = isPhone ? "Numéro sélectionné, copiez-le avec Ctrl+C." : "Adresse sélectionnée, copiez-la avec Ctrl+C.";
+      }
       try {
-        var r = document.createRange();
-        r.selectNodeContents(mail);
-        var s = window.getSelection();
-        s.removeAllRanges();
-        s.addRange(r);
-      } catch (e) {}
-      status.textContent = "Numéro sélectionné, copiez-le avec Ctrl+C.";
-    }
-    try {
-      navigator.clipboard.writeText(mail.textContent.replace(/\u00a0/g, " ")).then(function () {
-        status.textContent = "Numéro copié.";
-      }, fallback);
-    } catch (e) { fallback(); }
+        navigator.clipboard.writeText(el.textContent.replace(/\u00a0/g, " ")).then(function () {
+          status.textContent = isPhone ? "Numéro copié." : "Adresse copiée.";
+        }, fallback);
+      } catch (e) { fallback(); }
+    });
   });
 })();
 </script>
