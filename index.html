@@ -324,13 +324,27 @@ dialog.lightbox::backdrop { background: rgba(12, 9, 34, 0.8); }
     <div class="wrap">
       <p class="eyebrow">Galerie</p>
       <h2>Dans les coulisses et sur scène</h2>
-      <div class="gallery">
-        <div class="tile g0"><span>Répétition</span></div>
-        <div class="tile g1"><span>Essayage des costumes</span></div>
-        <div class="tile g2"><span>Réglage des lumières</span></div>
-        <div class="tile g3"><span>Salut final</span></div>
-        <div class="tile g4"><span>Construction du décor</span></div>
-        <div class="tile g5"><span>Avant le lever de rideau</span></div>
+      <ul class="photos" id="photos-sm">
+        <li><button type="button" class="ph-btn" data-i="0" aria-label="Agrandir la photo 1"><img src="img/sourire-01.jpg" alt="Une comédienne et un comédien se maquillent dans les coulisses (noir et blanc)" width="970" height="648" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="1" aria-label="Agrandir la photo 2"><img src="img/sourire-02.jpg" alt="Une comédienne souriante assise à une table de maquillage (noir et blanc)" width="968" height="644" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="2" aria-label="Agrandir la photo 3"><img src="img/sourire-03.jpg" alt="Un comédien aux bras croisés regarde au loin dans les coulisses (noir et blanc)" width="968" height="648" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="3" aria-label="Agrandir la photo 4"><img src="img/sourire-04.jpg" alt="Deux gardiens du Louvre en costume noir et lunettes de soleil" width="968" height="644" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="4" aria-label="Agrandir la photo 5"><img src="img/sourire-05.jpg" alt="Un comédien à casquette réfléchit, une comédienne lève le doigt derrière lui" width="966" height="644" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="5" aria-label="Agrandir la photo 6"><img src="img/sourire-06.jpg" alt="Un gardien du Louvre stupéfait sous une lumière bleue, une comédienne en retrait" width="962" height="634" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="6" aria-label="Agrandir la photo 7"><img src="img/sourire-07.jpg" alt="Un comédien en gilet jaune crie sur scène" width="964" height="642" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="7" aria-label="Agrandir la photo 8"><img src="img/sourire-08.jpg" alt="Un comédien avec un casque de vélo vert, l'air perplexe" width="424" height="644" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="8" aria-label="Agrandir la photo 9"><img src="img/sourire-09.jpg" alt="Une femme en foulard à fleurs et un homme à casquette orange" width="970" height="640" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="9" aria-label="Agrandir la photo 10"><img src="img/sourire-10.jpg" alt="Un agent de sécurité en gants blancs se penche vers une vitrine" width="964" height="640" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="10" aria-label="Agrandir la photo 11"><img src="img/sourire-11.jpg" alt="Une comédienne en cravate verte, le regard levé" width="974" height="644" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="11" aria-label="Agrandir la photo 12"><img src="img/sourire-12.jpg" alt="Une gardienne du Louvre et une comédienne sous une lumière violette" width="970" height="644" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="12" aria-label="Agrandir la photo 13"><img src="img/sourire-13.jpg" alt="Une comédienne en écharpe bleue gesticule à côté d'un comédien à lunettes" width="972" height="646" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="13" aria-label="Agrandir la photo 14"><img src="img/sourire-14.jpg" alt="Un comédien au doigt levé et une comédienne en chemise blanche" width="968" height="644" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="14" aria-label="Agrandir la photo 15"><img src="img/sourire-15.jpg" alt="Deux agents de sécurité en lunettes noires, l'un téléphone" width="954" height="640" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="15" aria-label="Agrandir la photo 16"><img src="img/sourire-16.jpg" alt="Un comédien et une comédienne chantent sur scène" width="970" height="644" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="16" aria-label="Agrandir la photo 17"><img src="img/sourire-17.jpg" alt="Les quatre comédiens alignés derrière les cordons rouges" width="968" height="642" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="17" aria-label="Agrandir la photo 18"><img src="img/sourire-18.jpg" alt="Les quatre comédiens immobiles derrière les cordons rouges" width="970" height="644" loading="lazy"></button></li>
+        <li><button type="button" class="ph-btn" data-i="18" aria-label="Agrandir la photo 19"><img src="img/sourire-19.jpg" alt="Les comédiens en pleine action sous une lumière rouge" width="966" height="634" loading="lazy"></button></li>
+      </ul>
       </div>
     </div>
   </section>
@@ -610,7 +624,7 @@ dialog.lightbox::backdrop { background: rgba(12, 9, 34, 0.8); }
   var lb = document.getElementById("lightbox");
   var lbImg = document.getElementById("lb-img");
   var lbCount = document.getElementById("lb-count");
-  var shots = Array.prototype.slice.call(document.querySelectorAll("#photos img"));
+  var shots = [];
   var lbIndex = 0;
   function showShot(i) {
     lbIndex = (i + shots.length) % shots.length;
@@ -618,7 +632,8 @@ dialog.lightbox::backdrop { background: rgba(12, 9, 34, 0.8); }
     lbImg.alt = shots[lbIndex].alt;
     lbCount.textContent = (lbIndex + 1) + " / " + shots.length;
   }
-  function openShot(i) {
+  function openShot(list, i) {
+    shots = list;
     showShot(i);
     if (typeof lb.showModal === "function") { if (!lb.open) lb.showModal(); }
     else { lb.setAttribute("open", ""); }
@@ -626,8 +641,11 @@ dialog.lightbox::backdrop { background: rgba(12, 9, 34, 0.8); }
   function closeShot() {
     if (typeof lb.close === "function") lb.close(); else lb.removeAttribute("open");
   }
-  shots.forEach(function (img, i) {
-    img.parentNode.addEventListener("click", function () { openShot(i); });
+  ["#photos", "#photos-sm"].forEach(function (sel) {
+    var list = Array.prototype.slice.call(document.querySelectorAll(sel + " img"));
+    list.forEach(function (img, i) {
+      img.parentNode.addEventListener("click", function () { openShot(list, i); });
+    });
   });
   document.getElementById("lb-prev").addEventListener("click", function () { showShot(lbIndex - 1); });
   document.getElementById("lb-next").addEventListener("click", function () { showShot(lbIndex + 1); });
@@ -684,5 +702,6 @@ dialog.lightbox::backdrop { background: rgba(12, 9, 34, 0.8); }
   });
 })();
 </script>
+
 </body>
 </html>
